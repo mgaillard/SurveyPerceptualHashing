@@ -101,7 +101,7 @@ Minimal Loss Hashing (MLH) \cite{norouzi2011minimal},\cite{norouzi2016} is a sup
 
 The learning is based on a training data set of labeled pairs $(x_i, x'_i, s_i)$ where $x_i$ and $x'_i$ are $p$-dimensional centered training points and $s_i$ is a similarity label, whose value is 1 if $x_i$ and $x'_i$ are similar and 0 if dissimilar. To preserve a specific metric one can compute the similarity label by thresholding the pairwise distance. Alternatively, to preserve the semantic similarity, one can assign a similarity label based on the class label.
 
-For each sample in the training data set, a loss function $l_{pair}: [0, 1]^{q}\times[0, 1]^{q}\times{0, 1}\rightarrow\mathbb{R}^{+}$ assesses the quality of the mapping by assigning a cost to a pair of binary codes and a similarity label. By minimizing the loss over all training examples, we can learn the parameters of the hash function.
+For each sample in the training data set, a loss function $l_{pair}: \{0, 1\}^{q}\times\{0, 1\}^{q}\times\{0, 1\}\rightarrow\mathbb{R}^{+}$ assesses the quality of the mapping by assigning a cost to a pair of binary codes and a similarity label. By minimizing the loss over all training examples, we can learn the parameters of the hash function.
 
 \[L(w)=\sum\limits_{i=1}^n l_{pair}(h_W(x_i), h_W(x'_i), s_i)\]
 
@@ -125,7 +125,7 @@ A linear hash function is used $h_W(x)=thr(Wx)$, as with MLH it is possible to u
 
 The learning is based on a training data set of triplets of $p$-dimensional centered training points $(x, x^{+}, x^{-})$ such that the pair $(x, x^{+})$ is more similar than the pair $(x, x^{-})$. To build a training data set that preserves semantic similarity one can pick two points from the same class and one point from another class.
 
-As with MLH, for each sample in the training data set, a loss function $l_{rank}: [0, 1]^{q}\times[0, 1]^{q}\times[0, 1]^{q}$ assesses the quality of the mapping by assigning a cost to a triplet of binary codes. The loss function should penalize the examples where $h_W(x_i)$ is closer to $h_W(x^{-}_i)$ than to $h_W(x^{+}_i)$ in Hamming distance. By minimizing the loss over all training examples, we can learn the parameters of the hash function.
+As with MLH, for each sample in the training data set, a loss function $l_{rank}: \{0, 1\}^{q}\times\{0, 1\}^{q}\times\{0, 1\}^{q}$ assesses the quality of the mapping by assigning a cost to a triplet of binary codes. The loss function should penalize the examples where $h_W(x_i)$ is closer to $h_W(x^{-}_i)$ than to $h_W(x^{+}_i)$ in Hamming distance. By minimizing the loss over all training examples, we can learn the parameters of the hash function.
 
 \[L(w)=\sum\limits_{i=1}^n l_{rank}(h_W(x_i), h_W(x^{+}_i), h_W(x^{-}_i))\]
 
